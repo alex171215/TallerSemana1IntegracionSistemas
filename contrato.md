@@ -1,13 +1,13 @@
-# Mini-contrato API
+# Contrato CRUD de /productos
 
-## Endpoint: GET /productos
-
-| Propiedad | Detalles |
-| :--- | :--- |
-| **Recurso** | `/productos` |
-| **Verbo** | `GET` |
-| **Respuesta 200 (Éxito)** | Lista de objetos con el formato `{ id, nombre, precio }` |
-| **Respuesta de error** | `500 Internal Server Error` (si falla el servidor) |
+| Operación | Verbo | URI | Éxito / Error |
+| :--- | :--- | :--- | :--- |
+| **Listar** | `GET` | `/api/v1/productos` | 200 |
+| **Obtener uno** | `GET` | `/api/v1/productos/{id}` | 200 / 404 |
+| **Crear** | `POST` | `/api/v1/productos` | 201 + Location |
+| **Reemplazar** | `PUT` | `/api/v1/productos/{id}` | 204 |
+| **Actualizar parcial** | `PATCH` | `/api/v1/productos/{id}` | 200 |
+| **Eliminar** | `DELETE` | `/api/v1/productos/{id}` | 204 / 404 |
 
 
 ## Bitácora
@@ -22,5 +22,5 @@
 ### Declaración de uso de IA
 - **Herramienta(s):** Gemini (Antigravity IDE)
 - **Nivel de uso:** Nivel 2–3 (borrador / revisor)
-- **Qué se le pidió:** Se le pidió formatear el mini-contrato, explicar y corregir el error de TypeScript al usar una interfaz en un método decorado ("A type referenced in a decorated signature..."), agregar los decoradores `@ApiOkResponse` para la documentación en Swagger y añadir comentarios TSDoc.
-- **Qué se modificó/verificó manualmente:** Se verificó que el cambio a `import type` solucionara el error del compilador, se comprobó visualmente en el editor que los TSDocs funcionaran correctamente, se revisó que Swagger UI reflejara los schemas en `/api/docs`, y se gestionó la exclusión de node_modules en Git.
+- **Qué se le pidió:** Se le pidió estructurar el contrato CRUD, explicar y resolver errores de TypeScript (importaciones faltantes y `import type`), generar el esqueleto de un nuevo endpoint de búsqueda con validaciones (`class-validator`), y explicar conceptualmente el código de estado 204 en Postman.
+- **Qué se modificó/verificó manualmente:** Se verificó que las importaciones agregadas resolvieran los errores de compilación, se probaron los endpoints CRUD en Swagger/Postman, se adaptó el código del esqueleto del nuevo endpoint en el controlador, y se comprobó que el comportamiento de los códigos de estado coincidiera con las explicaciones.
