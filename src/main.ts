@@ -8,6 +8,7 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api/v1');
   app.useGlobalPipes(new ValidationPipe());
+  app.enableCors(); // Permite que un frontend consuma tu API en la nube
 
   const config = new DocumentBuilder()
     .setTitle('API Productos')
@@ -17,6 +18,8 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
 
-  await app.listen(3000);
+  // Render inyectará el puerto dinámicamente en process.env.PORT
+  const port = process.env.PORT || 3000;
+  await app.listen(port, '0.0.0.0');
 }
 bootstrap();
